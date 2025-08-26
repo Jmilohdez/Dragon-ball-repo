@@ -1,0 +1,59 @@
+<h1>Dragon ball Page</h1>
+<hr>
+
+<section class="row">
+
+  <div class="col-12 col-sm-6">
+    <h3>Agregar: {{ name() }} </h3>
+
+    <input
+    type="text"
+    class="form-control"
+    placeholder="Nombre"
+    [value]="name()"
+    (change)="name.set(txtName.value)"
+    (input)="name.set(txtName.value)"
+     #txtName
+    />  <!--referencia local => #txtName  -->
+
+
+    <input
+    type="number"
+    class="form-control mt-2"
+    placeholder="Poder"
+    [value]="power()"
+    (input)="power.set(+txtPower.value)"
+    #txtPower
+    />
+
+    <button (click)="addCharacter()" class="mt-2 btn btn-primary">Agregar</button>
+  </div>
+
+  <div class="col-12 col-sm-6">
+    <h3>Listado Fuertes</h3>
+    <ul>
+      @for (character of characters(); track character.id; let idx = $index) {
+
+        @if (character.power > 500) {
+          <li>
+          <span>{{idx + 1 }} - {{ character.name }}</span>
+                <!-- Condicionar la clase para que cuando sea mayor de 9000 se resalte en rojo -->
+          <strong
+            [class.text-danger]="character.power > 9000"
+            [class.text-primary]="character.power < 9000"
+          >
+                <!-- [ngClass="powerClasses()"] -->
+            ({{character.power}})</strong>
+        </li>
+        } @else {
+          <li><strong>Yamcha es un inutil no merece ser visto</strong></li>
+        }
+
+
+      }
+    </ul>
+
+  </div>
+
+
+</section>

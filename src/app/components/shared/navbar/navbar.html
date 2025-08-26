@@ -1,0 +1,36 @@
+<style>
+  nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #212121;
+    color: white;
+    padding: 10px;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+  }
+
+  nav a.active {
+    color: red;
+    text-decoration: overline;
+  }
+
+</style>
+
+<nav>
+  <!-- sistema de ruta de angular routerLink -->
+  <a routerLink="/" routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >Contador</a>
+  <!-- esto se usa para mandar secciones de URL juntas dentro de una misma directriz -->
+  <a [routerLink]="['/hero']" [routerLinkActive]="'active'">Hero</a>
+
+  <a [routerLink]="['/dragonball']" [routerLinkActive]="'active'">Dragon ball</a>
+
+  <a routerLink= "/dragonball-super" routerLinkActive="'active'">Dragon ball Super</a>
+
+  <!-- Otros -->
+
+</nav>
