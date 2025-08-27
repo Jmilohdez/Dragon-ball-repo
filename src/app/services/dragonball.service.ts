@@ -1,15 +1,21 @@
 import { effect, Injectable, signal } from '@angular/core';
 import { Character } from '../interfaces/character.interface';
 
+// carga y manteniendo los datos en local storage
+const loadFromLocalStorage = (): Character[] => {
+                                                      // null coalescing ?? [] con ?? [] sabememos si la instruccion es nula o undefined
+  const characters = localStorage.getItem('characters')
+
+  return characters ? JSON.parse(characters):[];
+
+}
+
 // servicio, no es mas que una clase pero que trabaja con "dependency injection". trabaja el servicio como si fuera un Singleton y se tiene la misma instacia
 @Injectable({providedIn: 'root'})
 export class DragonballService {
-
-  // lista de personajes
-  characters = signal<Character[]>([
-    {id: 1, name: 'Goku', power: 9001},
-    {id: 2, name: 'Vegeta', power: 5000},
-  ]);
+  // incializacion de la señal
+  // Lista y carga de personajes
+  characters = signal<Character[]>(loadFromLocalStorage())
 
   // efecto: es una funcion que recibe un callback, ese callback es otra funcion que vamos a disparar cada que algo suced
 
