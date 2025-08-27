@@ -6,7 +6,7 @@
   <div class="col-12 col-sm-6">
 
     <!-- $ -- valor del evento emitido -->
-    <dragonball-character-add (newCharacter)="addCharacter($event)" />
+    <dragonball-character-add (newCharacter)="DragonballService.addCharacter($event)" />
 
   </div>
 
@@ -15,7 +15,7 @@
                             <!-- envio los personajes y le asigno el arreglo de personajes que tenemos como una señal -->
     <dragonball-character-list
     listName = "Listado de personajes"
-    [characters]="characters()"
+    [characters]="DragonballService.characters()"
     />
   </div>
 </section>

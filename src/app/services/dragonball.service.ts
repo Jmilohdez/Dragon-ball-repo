@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { effect, Injectable, signal } from '@angular/core';
 import { Character } from '../interfaces/character.interface';
 
 // servicio, no es mas que una clase pero que trabaja con "dependency injection". trabaja el servicio como si fuera un Singleton y se tiene la misma instacia
@@ -10,6 +10,13 @@ export class DragonballService {
     {id: 1, name: 'Goku', power: 9001},
     {id: 2, name: 'Vegeta', power: 5000},
   ]);
+
+  // efecto: es una funcion que recibe un callback, ese callback es otra funcion que vamos a disparar cada que algo suced
+
+  saveToLocalStorage = effect(() => {
+                    // serializar un aerrlgo como un string uso JSON.stringify el valor de la señal
+    localStorage.setItem('characters', JSON.stringify (this.characters()));  // grabamos en localstorage
+  });
 
 // recibimos el personaje en "character: Character" y para insertarlo, listado y esparcimos concatenando el nuevo personaje en nuestra señal list => [ ...list, character]
   // funcion para añadir un personaje
